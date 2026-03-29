@@ -1,15 +1,13 @@
 package com.example.assignment11;
-
-import java.util.Arrays;
-import java.util.Iterator;
-
+import java.util.*;
+//Player class defines a single player and methods associated:
+    // set/get name/position/team, iterators for name and id
 public abstract class Player implements SoccerEntity {
     private static int counter = 1; //static counter for all player IDs
     private int id; //track this player id
     private String name;
     private String position;
     private String team;
-    private PlayerRepository playerRepository;
 
     //constructor
     public Player(String name, String position, String team) {
@@ -26,41 +24,29 @@ public abstract class Player implements SoccerEntity {
         this.name = name;
         this.position = position;
         this.team = team;
-        this.playerRepository = new PlayerRepository();
     }
         //setters and getters for id, name, position, team
-        public int getPlayerID() {
-            return id;
-        }
-        public String getPlayerName() {
-            return name;
-        }
+        public int getPlayerID() {return id;}
+        public String getPlayerName() {return name;}
         public void setName(String name) {
             if (name == null) {
                 throw new IllegalArgumentException("Name cannot be empty");
             }
             this.name = name;
         }
-        public String getPosition() {
-            return position;
-        }
+        public String getPosition() {return position;}
         public void setPosition(String position) {
             if (position == null) {
                 throw new IllegalArgumentException("Country cannot be empty");
             }
             this.position = position;
         }
-        public String getTeam() {
-            return team;
-        }
+        public String getTeam() {return team;}
         public void setTeam(String team) {
             if (team == null) {
                 throw new IllegalArgumentException("League cannot be empty");
             }
             this.team = team;
-        }
-        public PlayerRepository getPlayerRepository() {
-            return playerRepository;
         }
 
         //define iterators and apply error checking for fields
@@ -71,12 +57,6 @@ public abstract class Player implements SoccerEntity {
         @Override
         public Iterator<String> getName() {
             return Arrays.asList(name).iterator();
-        }
-
-        //iterator over all teams
-        @Override
-        public Iterator<Player> PlayerIterator() {
-            return playerRepository.getAll().iterator();
         }
 
 }

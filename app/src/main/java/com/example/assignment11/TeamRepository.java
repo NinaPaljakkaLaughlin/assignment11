@@ -20,5 +20,26 @@ public class TeamRepository extends Repository<Team> {
 
         return filteredTeamsByLeague;
     }
+    //define the iterator for managing all teams, gets one team at a time
+    public Iterator<Team> TeamIterator() {
+        //get the list of the teams
+        List<Team> teams = getAll();
+
+        return new Iterator<Team>() {
+            private int index = 0;
+
+            @Override
+            public boolean hasNext() {
+                return index < teams.size();
+            }
+            @Override
+            public Team next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                return teams.get(index++);
+            }
+        };
+    }
 
 }
