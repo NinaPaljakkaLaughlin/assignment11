@@ -6,6 +6,8 @@ import java.util.*;
     // set/get name/country/league, iterators for name and id
 public abstract class Team implements SoccerEntity {
     //attributes
+    private static int counter; //track all team ids
+    private int teamId; //track this team id
     private String name;
     private String country;
     private String league;
@@ -20,7 +22,7 @@ public abstract class Team implements SoccerEntity {
         if (league == null) {
             throw new IllegalArgumentException("League cannot be empty");
         }
-
+        this.teamId = counter++; //always add to the static counter when a new team is created
         this.name = name;
         this.country = country;
         this.league = league;
@@ -28,6 +30,9 @@ public abstract class Team implements SoccerEntity {
     }
 
     //setters and getters for name, country, league
+    public int getTeamID() {
+        return teamId;
+    }
     public String getTeamName() {
         return name;
     }
@@ -63,7 +68,7 @@ public abstract class Team implements SoccerEntity {
     //define iterators and apply error checking for fields
     @Override
     public Iterator<String> getID() {
-        return Arrays.asList(name).iterator();
+        return Arrays.asList(String.valueOf(teamId)).iterator();
     }
     @Override
     public Iterator<String> getName() {
