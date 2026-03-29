@@ -2,7 +2,7 @@ package com.example.assignment11;
 import java.util.*;
 //Player class defines a single player and methods associated:
     // set/get name/position/team, iterators for name and id
-public abstract class Player implements SoccerEntity {
+public class Player implements SoccerEntity {
     private static int counter = 1; //static counter for all player IDs
     private int id; //track this player id
     private String name;
@@ -58,5 +58,20 @@ public abstract class Player implements SoccerEntity {
         public Iterator<String> getName() {
             return Arrays.asList(name).iterator();
         }
+        //overrides for iterators defined in SoccerEntity
+            //these must be defined here since SoccerEntity is implemented
+        @Override
+        public Iterator<Team> TeamIterator() {
+            return Collections.emptyIterator();
+        }
 
+        @Override
+        public Iterator<Player> PlayerIterator() {
+            return Collections.emptyIterator();
+        }
+
+        @Override
+        public Iterator<Match> MatchIterator() {
+            return Collections.emptyIterator();
+        }
 }

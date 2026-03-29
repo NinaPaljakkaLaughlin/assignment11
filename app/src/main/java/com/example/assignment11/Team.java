@@ -4,7 +4,7 @@ import java.util.*;
 
 //Team class defines a single team and methods associated:
     // set/get name/country/league, iterators for name and id
-public abstract class Team implements SoccerEntity {
+public class Team implements SoccerEntity {
     //attributes
     private static int counter = 1; //track all team ids
     private int teamId; //track this team id
@@ -57,4 +57,20 @@ public abstract class Team implements SoccerEntity {
     @Override
     public Iterator<String> getName() {return Arrays.asList(name).iterator();}
 
+    //overrides for iterators defined in SoccerEntity
+    //these must be defined here since SoccerEntity is implemented
+    @Override
+    public Iterator<Team> TeamIterator() {
+        return Collections.emptyIterator();
+    }
+
+    @Override
+    public Iterator<Player> PlayerIterator() {
+        return Collections.emptyIterator();
+    }
+
+    @Override
+    public Iterator<Match> MatchIterator() {
+        return Collections.emptyIterator();
+    }
 }

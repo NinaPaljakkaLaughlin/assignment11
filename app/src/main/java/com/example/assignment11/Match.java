@@ -3,7 +3,7 @@ import java.util.*;
 //Match class defines a single match and methods associated:
 // set/get homeTeam/awayTeam/score, iterators for name and id
 
-public abstract class Match implements SoccerEntity {
+public class Match implements SoccerEntity {
     //attributes
     private static int counter = 1; //track all match ids
     private int matchId; //track this match id
@@ -58,6 +58,23 @@ public abstract class Match implements SoccerEntity {
     @Override
     public Iterator<String> getName() {
         return Arrays.asList("Home: " + homeTeam + " - Away: " + awayTeam).iterator();
+    }
+
+    //overrides for iterators defined in SoccerEntity
+    //these must be defined here since SoccerEntity is implemented
+    @Override
+    public Iterator<Team> TeamIterator() {
+        return Collections.emptyIterator();
+    }
+
+    @Override
+    public Iterator<Player> PlayerIterator() {
+        return Collections.emptyIterator();
+    }
+
+    @Override
+    public Iterator<Match> MatchIterator() {
+        return Collections.emptyIterator();
     }
 
 }
