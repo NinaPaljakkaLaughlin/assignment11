@@ -1,4 +1,4 @@
 package com.example.assignment11;
 
-public class Player {
+public class Player implements SoccerEntity {
 }

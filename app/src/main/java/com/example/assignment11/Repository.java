@@ -26,11 +26,12 @@ public class Repository<T> {
         }
     }
 
-
+    //getAll method to return the list of items (general)
     public List<T> getAll() {
         return new ArrayList<>(items);
     }
 
+    //add method to add an item to the list of items (general)
     public void add(T item) {
         //no empty items can be added
         if (item == null) {
@@ -39,6 +40,7 @@ public class Repository<T> {
         items.add(item);
     }
 
+    //filter method to filter through the list of items based on a given predicate
     public List<T> filter(Predicate<T> predicate) {
         //no empty items can be filtered
         if (predicate == null) {
