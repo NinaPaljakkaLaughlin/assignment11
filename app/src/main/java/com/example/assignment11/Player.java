@@ -11,13 +11,13 @@ public abstract class Player implements SoccerEntity {
 
     //constructor
     public Player(String name, String position, String team) {
-        if (name == null) {
+        if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Name cannot be empty");
         }
-        if (position == null) {
+        if (position == null || position.isBlank()) {
             throw new IllegalArgumentException("Position cannot be empty");
         }
-        if (team == null) {
+        if (team == null || team.isBlank()) {
             throw new IllegalArgumentException("Team cannot be empty");
         }
         this.id = counter++; //always add to the static counter when a new player is created
@@ -29,21 +29,21 @@ public abstract class Player implements SoccerEntity {
         public int getPlayerID() {return id;}
         public String getPlayerName() {return name;}
         public void setName(String name) {
-            if (name == null) {
+            if (name == null || name.isBlank()) {
                 throw new IllegalArgumentException("Name cannot be empty");
             }
             this.name = name;
         }
         public String getPosition() {return position;}
         public void setPosition(String position) {
-            if (position == null) {
+            if (position == null || position.isBlank()) {
                 throw new IllegalArgumentException("Country cannot be empty");
             }
             this.position = position;
         }
         public String getTeam() {return team;}
         public void setTeam(String team) {
-            if (team == null) {
+            if (team == null || team.isBlank()) {
                 throw new IllegalArgumentException("League cannot be empty");
             }
             this.team = team;

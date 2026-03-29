@@ -5,7 +5,7 @@ import java.util.*;
 public class TeamRepository extends Repository<Team> {
     //error checking for empty league entry
     public List<Team> filterByLeague(String league) {
-        if (league == null) {
+        if (league == null || league.isBlank()) {
             throw new IllegalArgumentException("League cannot be empty");
         }
         //create a new list for the filtered league
@@ -29,9 +29,8 @@ public class TeamRepository extends Repository<Team> {
             private int index = 0;
 
             @Override
-            public boolean hasNext() {
-                return index < teams.size();
-            }
+            public boolean hasNext() {return index < teams.size();}
+
             @Override
             public Team next() {
                 if (!hasNext()) {

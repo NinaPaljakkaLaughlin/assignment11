@@ -4,7 +4,7 @@ import java.util.*;
 public class MatchRepository extends Repository<Match> {
     //error checking for empty league entry
     public List<Match> filterByTeam(String team) {
-        if (team == null) {
+        if (team == null || team.isBlank()) {
             throw new IllegalArgumentException("Team cannot be empty");
         }
         //create a new list for the filtered league

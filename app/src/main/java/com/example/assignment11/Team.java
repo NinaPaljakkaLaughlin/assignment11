@@ -12,13 +12,13 @@ public abstract class Team implements SoccerEntity {
     private String country;
     private String league;
     public Team(String name, String country, String league) {
-        if (name == null) {
+        if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Name cannot be empty");
         }
-        if (country == null) {
+        if (country == null || country.isBlank()) {
             throw new IllegalArgumentException("Country cannot be empty");
         }
-        if (league == null) {
+        if (league == null || league.isBlank()) {
             throw new IllegalArgumentException("League cannot be empty");
         }
         this.teamId = counter++; //always add to the static counter when a new team is created
@@ -31,21 +31,21 @@ public abstract class Team implements SoccerEntity {
     public int getTeamID() {return teamId;}
     public String getTeamName() {return name;}
     public void setName(String name) {
-        if (name == null) {
+        if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Name cannot be empty");
         }
         this.name = name;
     }
     public String getCountry() {return country;}
     public void setCountry(String country) {
-        if (country == null) {
+        if (country == null || country.isBlank()) {
             throw new IllegalArgumentException("Country cannot be empty");
         }
         this.country = country;
     }
     public String getLeague() {return league;}
     public void setLeague(String league) {
-        if (league == null) {
+        if (league == null || league.isBlank()) {
             throw new IllegalArgumentException("League cannot be empty");
         }
         this.league = league;

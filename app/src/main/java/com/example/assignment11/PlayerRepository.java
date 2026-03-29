@@ -7,7 +7,7 @@ public class PlayerRepository extends Repository<Player> {
 
     //error checking for empty team entry
     public List<Player> filterByTeam(String team) {
-        if (team == null) {
+        if (team == null || team.isBlank()) {
             throw new IllegalArgumentException("League cannot be empty");
         }
         //create a new list for the filtered players based on their team

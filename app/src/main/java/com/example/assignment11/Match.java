@@ -11,13 +11,13 @@ public abstract class Match implements SoccerEntity {
     private String awayTeam;
     private String score;
     public Match(String homeTeam, String awayTeam, String score) {
-        if (homeTeam == null) {
+        if (homeTeam == null || homeTeam.isBlank()) {
             throw new IllegalArgumentException("Home Team cannot be empty");
         }
-        if (awayTeam == null) {
+        if (awayTeam == null || awayTeam.isBlank()) {
             throw new IllegalArgumentException("Away Team cannot be empty");
         }
-        if (score == null) {
+        if (score == null || score.isBlank()) {
             throw new IllegalArgumentException("Score cannot be empty");
         }
         this.matchId = counter++; //always add to the static counter when a new match is created
@@ -30,21 +30,21 @@ public abstract class Match implements SoccerEntity {
     public int getMatchID() {return matchId;}
     public String getHomeTeam() {return homeTeam;}
     public void setHomeTeam(String homeTeam) {
-        if (homeTeam == null) {
+        if (homeTeam == null || homeTeam.isBlank()) {
             throw new IllegalArgumentException("Home team cannot be empty");
         }
         this.homeTeam = homeTeam;
     }
     public String getAwayTeam() {return awayTeam;}
     public void setAwayTeam(String awayTeam) {
-        if (awayTeam == null) {
+        if (awayTeam == null || awayTeam.isBlank()) {
             throw new IllegalArgumentException("Away team cannot be empty");
         }
         this.awayTeam = awayTeam;
     }
     public String getScore() {return score;}
     public void setScore(String score) {
-        if (score == null) {
+        if (score == null || score.isBlank()) {
             throw new IllegalArgumentException("Score cannot be empty");
         }
         this.score = score;
@@ -57,7 +57,7 @@ public abstract class Match implements SoccerEntity {
     }
     @Override
     public Iterator<String> getName() {
-        return Arrays.asList(homeTeam + "-" + awayTeam).iterator();
+        return Arrays.asList("Home: " + homeTeam + " - Away: " + awayTeam).iterator();
     }
 
 }
