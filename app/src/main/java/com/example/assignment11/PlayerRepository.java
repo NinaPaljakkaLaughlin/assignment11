@@ -10,18 +10,13 @@ public class PlayerRepository extends Repository<Player> {
         if (team == null || team.isBlank()) {
             throw new IllegalArgumentException("League cannot be empty");
         }
-        //create a new list for the filtered players based on their team
-        List<Player> filteredPlayersByTeam = new ArrayList<>();
 
-        //use getAll from Repository to loop through player teams and add to new list
-        for (Player player : getAll()) {
-            if (player.getTeam().equalsIgnoreCase(team)) {
-                filteredPlayersByTeam.add(player);
-            }
+        //use stream and lambda expression to get and compare players, team
+        return getAll().stream()
+                .filter(player -> player.getTeam().equalsIgnoreCase(team))
+                .sorted(Comparator.comparing(player -> player.getTeam().toLowerCase())).toList();
         }
-        return filteredPlayersByTeam;
-    }
-    //define the iterator for managing all players
+        //define the iterator for managing all players
     public Iterator<Player> PlayerIterator() {
         //get the list of the players
         List<Player> players = getAll();

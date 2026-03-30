@@ -1,4 +1,5 @@
 package com.example.assignment11;
+
 import java.util.*;
 
 //class TeamRepository manages list of soccer teams
@@ -12,14 +13,21 @@ public class TeamRepository extends Repository<Team> {
         List<Team> filteredTeamsByLeague = new ArrayList<>();
 
         //use getAll from Repository to loop through teams leagues and add to new list
-        for (Team team : getAll()) {
-            if (team.getLeague().equalsIgnoreCase(league)) {
-                filteredTeamsByLeague.add(team);
-            }
+        //for (Team team : getAll()) {
+        //  if (team.getLeague().equalsIgnoreCase(league)) {
+        //    filteredTeamsByLeague.add(team);
+        //}
+        //}
+        //sort with comparator and lambda:
+        //filteredTeamsByLeague.sort((team1,team2) -> team1.getLeague().compareToIgnoreCase(team2.getLeague()));
+        //return filteredTeamsByLeague;
+
+        //do the same as above but using stream with the lambda statement
+        return getAll().stream()
+                .filter(team -> team.getLeague().equalsIgnoreCase(league))
+                .sorted(Comparator.comparing(team -> team.getTeamName().toLowerCase())).toList();
         }
 
-        return filteredTeamsByLeague;
-    }
     //define the iterator for managing all teams, gets one team at a time
     public Iterator<Team> TeamIterator() {
         //get the list of the teams
@@ -40,5 +48,4 @@ public class TeamRepository extends Repository<Team> {
             }
         };
     }
-
 }

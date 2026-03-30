@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -33,6 +34,8 @@ public class TeamFragment extends Fragment {
 
         EditText searchBar = view.findViewById(R.id.searchBar);
         ListView listView = view.findViewById(R.id.listView);
+        EditText leagueInput = view.findViewById(R.id.leagueInput);
+        Button btnFilterLeague = view.findViewById(R.id.btnFilterLeague);
 
         DataProvider<Team> data = new DataProvider<>();
         List<Team> teams = data.getData(Team.class);
@@ -44,12 +47,32 @@ public class TeamFragment extends Fragment {
 
         //display the list of teams
         List<String> teamNames = new ArrayList<>();
-        for (Team team : teamRepo.getAll()) {
+        Iterator<Team> iterator = teamRepo.TeamIterator();
+
+        while (iterator.hasNext()) {
+            Team team = iterator.next();
             teamNames.add(team.getTeamName());
         }
 
         adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, teamNames);
         listView.setAdapter(adapter);
+
+        //adding the button for filtering teams based on their League
+        btnFilterLeague.setOnClickListener(v-> {
+            String league = leagueInput.getText().toString().toLowerCase().trim();
+            if (league.isBlank()) {
+                throw new IllegalArgumentException("League cannot be empty");
+            }
+            else {
+                List<Team> filteredByLeague = teamRepo.filterByLeague(league);
+                List<String> teamsFiltered = new ArrayList<>();
+                for (Team team : filteredByLeague) {
+                    teamsFiltered.add(team.getTeamName());
+                }
+                adapter.clear();
+                adapter.addAll(teamsFiltered);
+            }
+        });
 
         //use lambda in the search bar functionality
         searchBar.addTextChangedListener(new TextWatcher() {
@@ -67,8 +90,13 @@ public class TeamFragment extends Fragment {
                );
 
                List<String> filteredNames = new ArrayList<>();
-               for (Team team : filtered) {
-                   filteredNames.add(team.getTeamName());
+               Iterator<Team> iterator = teamRepo.TeamIterator();
+
+               while (iterator.hasNext()) {
+                   Team team = iterator.next();
+                   if (team.getTeamName().toLowerCase().contains(query)) {
+                       filteredNames.add(team.getTeamName());
+                   }
                }
 
                adapter.clear();

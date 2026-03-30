@@ -17,7 +17,26 @@
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/searchBar"/>
+        android:layout_below="@id/btnFilterTeam"
+        android:layout_marginTop="8dp"/>
 
+    <Button
+        android:id="@+id/btnFilterTeam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Filter Players by Team"
+        android:layout_below="@id/searchBar"
+        android:layout_alignParentStart="true"/>
+
+    <EditText
+        android:id="@+id/teamInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter team"
+        android:layout_toEndOf="@id/btnFilterTeam"
+        android:layout_alignTop="@id/btnFilterTeam"
+        android:layout_marginStart="8dp"
+        android:padding="8dp"/>
 
 </RelativeLayout>

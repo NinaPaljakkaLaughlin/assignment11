@@ -17,7 +17,47 @@
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/searchBar"/>
+        android:layout_below="@id/btnFilterAwayTeam"
+        android:layout_marginTop="8dp"/>
+
+    <Button
+        android:id="@+id/btnFilterHomeTeam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Filter Match by Home Team"
+        android:layout_below="@id/searchBar"
+        android:layout_alignParentStart="true"/>
+
+    <EditText
+        android:id="@+id/homeTeamInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter home team"
+        android:layout_toEndOf="@id/btnFilterHomeTeam"
+        android:layout_alignTop="@id/btnFilterHomeTeam"
+        android:layout_marginStart="8dp"
+        android:padding="8dp"/>
+
+    <Button
+        android:id="@+id/btnFilterAwayTeam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Filter Match by Away Team"
+        android:layout_below="@id/btnFilterHomeTeam"
+        android:layout_alignParentStart="true"/>
+
+    <EditText
+        android:id="@+id/awayTeamInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter away team"
+        android:layout_toEndOf="@id/btnFilterAwayTeam"
+        android:layout_alignTop="@id/btnFilterAwayTeam"
+        android:layout_marginStart="8dp"
+        android:padding="8dp"/>
+
 
 
 </RelativeLayout>
