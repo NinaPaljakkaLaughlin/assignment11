@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        tabLayout = findViewById(R.id.tabLayout);
+        tabLayout = findViewById(R.id.tab_layout);
         viewPager2 = findViewById(R.id.view_pager);
         myViewPagerAdapter = new MyViewPagerAdapter(this);
         myViewPagerAdapter.addFragment(new TeamFragment(), "Teams");
