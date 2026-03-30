@@ -9,7 +9,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.assignment11.fragments.MatchFragment;
+import com.example.assignment11.fragments.PlayerFragment;
+import com.example.assignment11.fragments.TeamFragment;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 //soccer team management app
 //display lists of teams, players, and matches
 //have filtering and sorting capabilities
@@ -32,10 +36,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        tabLayout = findViewById(R.id.TabLayout);
+        tabLayout = findViewById(R.id.tabLayout);
         viewPager2 = findViewById(R.id.view_pager);
         myViewPagerAdapter = new MyViewPagerAdapter(this);
+        myViewPagerAdapter.addFragment(new TeamFragment(), "Teams");
+        myViewPagerAdapter.addFragment(new PlayerFragment(), "Players");
+        myViewPagerAdapter.addFragment(new MatchFragment(), "Matches");
         viewPager2.setAdapter(myViewPagerAdapter);
+
+        new TabLayoutMediator(tabLayout, viewPager2,
+                (tab, position) -> tab.setText(myViewPagerAdapter.getTitle(position))
+        ).attach();
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -67,22 +79,4 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
     }
-
-
-    //set up simple TabLayout with fragments for Teams, Players, and Matches
-
-
-
-
-    //Implement search bar that uses lambdas for filtering content
-
-
-
-    //Include sorting options that leverage lambda expressions
-
-
-
-    //Demonstrates the use of generic repository classes
-
-
 }
